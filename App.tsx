@@ -22,8 +22,6 @@ const App: React.FC = () => {
   useEffect(() => {
     StorageService.init();
     refreshData();
-    
-    // Check for persisted session if needed, but for now we rely on memory
   }, []);
 
   const refreshData = () => {
@@ -42,12 +40,14 @@ const App: React.FC = () => {
   };
 
   const handleLogin = (user: User) => {
+    refreshData(); // Refresh to ensure latest data (policies/users) is available
     setAuth({ user, isAuthenticated: true });
   };
 
   const handleLogout = () => {
     setAuth({ user: null, isAuthenticated: false });
     setCurrentTab('dashboard');
+    refreshData();
   };
 
   const expiringCount = useMemo(() => {

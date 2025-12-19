@@ -8,8 +8,10 @@ interface CustomerDashboardProps {
 }
 
 const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ user, policies }) => {
-  // Ensure robust matching by trimming IDs
-  const myPolicies = policies.filter(p => p.customerId.trim() === user.id.trim());
+  // Use robust ID comparison to ensure policies are correctly linked to the customer account
+  const myPolicies = policies.filter(p => 
+    String(p.customerId).trim() === String(user.id).trim()
+  );
 
   return (
     <div className="space-y-8 animate-fadeIn max-w-4xl mx-auto">
@@ -20,7 +22,7 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ user, policies })
             <p className="text-blue-100 opacity-90">
               {myPolicies.length > 0 
                 ? `You have ${myPolicies.length} active insurance policies under our management.` 
-                : "Welcome to your insurance portal. Your policies will appear here once they are processed by our team."}
+                : "Welcome to your insurance portal. Your policies will appear here once they are linked to your account by our office."}
             </p>
           </div>
         </div>
@@ -85,7 +87,7 @@ const CustomerDashboard: React.FC<CustomerDashboardProps> = ({ user, policies })
                <i className="fas fa-folder-open text-slate-300 text-3xl"></i>
             </div>
             <p className="text-slate-500 font-medium">No policies linked to your account yet.</p>
-            <p className="text-sm text-slate-400">If you recently added a policy, please wait for administrative approval or contact the office.</p>
+            <p className="text-sm text-slate-400">If you recently added a policy, please ensure it was assigned to your user account correctly in the admin section.</p>
           </div>
         )}
       </div>
