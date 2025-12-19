@@ -1,0 +1,5 @@
+{
+  "name": "SecureShield Insurance Portal",
+  "description": "A comprehensive Insurance Management System for United India and Star Health agencies, featuring role-based access for Admins, Staff, and Customers to manage policies, track expirations, and view insurance summaries.",
+  "requestFramePermissions": []
+}
